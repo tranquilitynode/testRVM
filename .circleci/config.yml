@@ -1,0 +1,58 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/configuration-reference
+version: 2.1
+
+orbs:
+  ruby: circleci/ruby@2.0.0
+
+commands:
+  build-ios-app:
+    steps:
+      - attach_workspace:
+          at: /tmp/build_space/
+      - run:
+          name: Check Disk Space
+          command: df -h
+      - run:
+          name: bundle install
+          command: |-
+            curl -sSL https://get.rvm.io | bash
+            source ~/.rvm/scripts/rvm
+            rvm install 2.7.5
+            rvm use default 2.7.5
+            cd $APP_FOLDER
+            bundle install
+
+jobs:
+  pre-build:
+    docker:
+      - image: circleci/node:14.1
+    steps:
+      - run: mkdir build_space
+      - checkout:
+          path: /tmp/build_space/git_repo
+      - persist_to_workspace:
+          root: /tmp/build_space
+          paths:
+            - git_repo
+
+  build-consumer-ios-app-prod:
+    macos:
+      xcode: 14.3
+    resource_class: macos.x86.medium.gen2
+    working_directory: /tmp/build_space/git_repo
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "ea:d7:a3:0d:b6:e8:8c:31:67:d5:ea:6f:86:c6:ab:32"
+      - attach_workspace:
+          at: /tmp/build_space/
+      - run:
+          name: Dummy1
+          command: echo "Dummy1" >> ${BASH_ENV}
+      - build-ios-app
+
+workflows:
+  build-things:
+    jobs:
+      - build-consumer-ios-app-prod
