@@ -48,8 +48,8 @@ jobs:
       - attach_workspace:
           at: /tmp/build_space/
       - run:
-          name: Dummy1
-          command: echo "Dummy1" >> ${BASH_ENV}
+          name: DummyCommand1
+          command: echo "DummyCommand1"
       - build-ios-app
 
 workflows:
