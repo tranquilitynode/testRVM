@@ -2,9 +2,6 @@
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
 
-orbs:
-  ruby: circleci/ruby@2.0.0
-
 commands:
   build-ios-app:
     steps:
@@ -13,23 +10,13 @@ commands:
       - run:
           name: bundle install
           command: |-
-            echo "code: curl -sSL..."
-            curl -sSL https://get.rvm.io | bash
-            echo "code: source ~..."
-            source ~/.rvm/scripts/rvm
-            echo "code: rvm install 3.2.2..."
-            rvm install 3.2.2
-            echo "code: rvm use default 3.2.2"
-            rvm use default 3.2.2
-            echo "code: cd $APP_FOLDER"
-            cd $APP_FOLDER
-            echo "code: bundle install"
-            bundle install
-            echo "code: type rvm | head -1"
-            type rvm | head -1
+            echo "code: ruby --version"
+            ruby --version
 
 jobs:
   build-consumer-ios-app-prod:
+    docker:
+      - image: cimg/ruby:3.2.2-node
     macos:
       xcode: 15.0.0
     resource_class: macos.x86.medium.gen2
@@ -39,18 +26,7 @@ jobs:
           at: /tmp/build_space/
       - build-ios-app
 
-  build-orb:
-    macos:
-      xcode: 15.0.0
-    resource_class: macos.x86.medium.gen2
-    steps:
-      - checkout
-      - ruby/install:
-          version: '2.7'
-      - run: echo "Ruby 2.7 has been installed"
-
 workflows:
   build-things:
     jobs:
-      #- build-consumer-ios-app-prod
-      - build-orb
+      - build-consumer-ios-app-prod
