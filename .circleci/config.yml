@@ -31,7 +31,7 @@ commands:
 jobs:
   pre-build:
     docker:
-      - image: circleci/node:14.1
+      - image: circleci/node:20.6.0
     steps:
       - run: mkdir build_space
       - checkout:
