@@ -2,8 +2,8 @@
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
 
-#orbs:
-#  ruby: circleci/ruby@2.0.0
+orbs:
+  ruby: circleci/ruby@2.0.0
 
 commands:
   build-ios-app:
@@ -28,19 +28,16 @@ commands:
             echo "code: type rvm | head -1"
             type rvm | head -1
 
-jobs:
-  pre-build:
+  build-orb:
     docker:
-      - image: cimg/node:20.6.0
+      - image: cimg/base:stable
     steps:
-      - run: mkdir build_space
-      - checkout:
-          path: /tmp/build_space/git_repo
-      - persist_to_workspace:
-          root: /tmp/build_space
-          paths:
-            - git_repo
+      - checkout
+      - ruby/install:
+          version: '2.7'
+      - run: echo "Ruby 2.7 has been installed"
 
+jobs:
   build-consumer-ios-app-prod:
     macos:
       xcode: 15.0.0
@@ -54,5 +51,5 @@ jobs:
 workflows:
   build-things:
     jobs:
-      #- pre-build
-      - build-consumer-ios-app-prod
+      #- build-consumer-ios-app-prod
+      - build-orb
