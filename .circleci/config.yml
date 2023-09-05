@@ -43,7 +43,7 @@ jobs:
 
   build-consumer-ios-app-prod:
     macos:
-      xcode: 14.3
+      xcode: 15.0.0
     resource_class: macos.x86.medium.gen2
     working_directory: /tmp/build_space/git_repo
     steps:
