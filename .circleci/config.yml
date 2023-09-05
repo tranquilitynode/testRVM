@@ -2,6 +2,9 @@
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
 
+rbs:
+  ruby: circleci/ruby@2.0.0
+
 commands:
   build-ios-app:
     steps:
