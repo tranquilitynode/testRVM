@@ -6,24 +6,24 @@ commands:
   build-ios-app:
     steps:
       - attach_workspace:
-        at: /tmp/build_space/
+          at: /tmp/build_space/
       - run:
-        name: bundle install
-        command: |-
-          echo "code: ruby --version"
-          ruby --version
+          name: bundle install
+          command: |-
+            echo "code: ruby --version"
+            ruby --version
 
 jobs:
   build-consumer-ios-app-prod:
-    docker:
-      - image: cimg/ruby:3.2.2-node
     macos:
       xcode: 15.0.0
     resource_class: macos.x86.medium.gen2
+    docker:
+      - image: cimg/ruby:3.2.2-node
     working_directory: /tmp/build_space/git_repo
     steps:
       - attach_workspace:
-        at: /tmp/build_space/
+          at: /tmp/build_space/
       - build-ios-app
 
 workflows:
