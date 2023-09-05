@@ -11,9 +11,6 @@ commands:
       - attach_workspace:
           at: /tmp/build_space/
       - run:
-          name: Check Disk Space
-          command: sudo df -h
-      - run:
           name: bundle install
           command: |-
             curl -sSL https://get.rvm.io | bash
@@ -42,14 +39,8 @@ jobs:
     resource_class: macos.x86.medium.gen2
     working_directory: /tmp/build_space/git_repo
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "ea:d7:a3:0d:b6:e8:8c:31:67:d5:ea:6f:86:c6:ab:32"
       - attach_workspace:
           at: /tmp/build_space/
-      - run:
-          name: DummyCommand1
-          command: echo "DummyCommand1"
       - build-ios-app
 
 workflows:
