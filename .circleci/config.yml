@@ -29,8 +29,6 @@ commands:
             type rvm | head -1
 
   build-orb:
-    docker:
-      - image: cimg/base:stable
     steps:
       - checkout
       - ruby/install:
