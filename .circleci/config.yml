@@ -14,12 +14,22 @@ commands:
             ruby --version
 
 jobs:
+  pre-build:
+    docker:
+      - image: cimg/ruby:3.2.2-node
+    steps:
+      - run: mkdir build_space
+      - checkout:
+          path: /tmp/build_space/git_repo
+      - persist_to_workspace:
+          root: /tmp/build_space
+          paths:
+            - git_repo
+
   build-consumer-ios-app-prod:
     macos:
       xcode: 15.0.0
     resource_class: macos.x86.medium.gen2
-    docker:
-      - image: cimg/ruby:3.2.2-node
     working_directory: /tmp/build_space/git_repo
     steps:
       - attach_workspace:
@@ -29,4 +39,5 @@ jobs:
 workflows:
   build-things:
     jobs:
+      - pre-build
       - build-consumer-ios-app-prod
