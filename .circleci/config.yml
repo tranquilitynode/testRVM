@@ -6,12 +6,12 @@ commands:
   build-ios-app:
     steps:
       - attach_workspace:
-          at: /tmp/build_space/
+        at: /tmp/build_space/
       - run:
-          name: bundle install
-          command: |-
-            echo "code: ruby --version"
-            ruby --version
+        name: bundle install
+        command: |-
+          echo "code: ruby --version"
+          ruby --version
 
 jobs:
   build-consumer-ios-app-prod:
@@ -23,7 +23,7 @@ jobs:
     working_directory: /tmp/build_space/git_repo
     steps:
       - attach_workspace:
-          at: /tmp/build_space/
+        at: /tmp/build_space/
       - build-ios-app
 
 workflows:
