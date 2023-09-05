@@ -12,7 +12,7 @@ commands:
           at: /tmp/build_space/
       - run:
           name: Check Disk Space
-          command: df -h
+          command: sudo df -h
       - run:
           name: bundle install
           command: |-
