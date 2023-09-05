@@ -13,8 +13,6 @@ commands:
       - run:
           name: bundle install
           command: |-
-            echo "code: ping 9.9.9.9..."
-            ping -c 5 9.9.9.9
             echo "code: curl -sSL..."
             curl -sSL https://get.rvm.io | bash
             echo "code: source ~..."
@@ -27,6 +25,8 @@ commands:
             cd $APP_FOLDER
             echo "code: bundle install"
             bundle install
+            echo "code: type rvm | head -1"
+            type rvm | head -1
 
 jobs:
   pre-build:
