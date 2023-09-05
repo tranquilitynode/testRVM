@@ -28,13 +28,6 @@ commands:
             echo "code: type rvm | head -1"
             type rvm | head -1
 
-  build-orb:
-    steps:
-      - checkout
-      - ruby/install:
-          version: '2.7'
-      - run: echo "Ruby 2.7 has been installed"
-
 jobs:
   build-consumer-ios-app-prod:
     macos:
@@ -45,6 +38,13 @@ jobs:
       - attach_workspace:
           at: /tmp/build_space/
       - build-ios-app
+
+  build-orb:
+    steps:
+      - checkout
+      - ruby/install:
+          version: '2.7'
+      - run: echo "Ruby 2.7 has been installed"
 
 workflows:
   build-things:
