@@ -40,6 +40,9 @@ jobs:
       - build-ios-app
 
   build-orb:
+    macos:
+      xcode: 15.0.0
+    resource_class: macos.x86.medium.gen2
     steps:
       - checkout
       - ruby/install:
