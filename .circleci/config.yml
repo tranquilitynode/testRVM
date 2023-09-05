@@ -17,10 +17,10 @@ commands:
             curl -sSL https://get.rvm.io | bash
             echo "code: source ~..."
             source ~/.rvm/scripts/rvm
-            echo "code: rvm install 2.7.5..."
-            rvm install 2.7.5
-            echo "code: rvm use default 2.7.5"
-            rvm use default 2.7.5
+            echo "code: rvm install 3.2.2..."
+            rvm install 3.2.2
+            echo "code: rvm use default 3.2.2"
+            rvm use default 3.2.2
             echo "code: cd $APP_FOLDER"
             cd $APP_FOLDER
             echo "code: bundle install"
