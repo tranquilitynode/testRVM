@@ -11,24 +11,26 @@ commands:
     steps:
       - attach_workspace:
           at: /tmp/build_space/
+      - macos/switch-ruby:
+          version: "2.7.5"
       - run:
           name: bundle install
           command: |-
             echo "code: ruby --version"
             ruby --version
 
-jobs:
-  pre-build:
-    docker:
-      - image: cimg/ruby:2.7.5-node
-    steps:
-      - run: mkdir build_space
-      - checkout:
-          path: /tmp/build_space/git_repo
-      - persist_to_workspace:
-          root: /tmp/build_space
-          paths:
-            - git_repo
+#jobs:
+#  pre-build:
+#    docker:
+#      - image: cimg/ruby:2.7.5-node
+#    steps:
+#      - run: mkdir build_space
+#      - checkout:
+#          path: /tmp/build_space/git_repo
+#      - persist_to_workspace:
+#          root: /tmp/build_space
+#          paths:
+#            - git_repo
 
   build-consumer-ios-app-prod:
     macos:
