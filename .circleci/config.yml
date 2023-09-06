@@ -11,6 +11,8 @@ commands:
     steps:
       - attach_workspace:
           at: /tmp/build_space/
+      - macos/switch-ruby:
+          version: "2.7.5"
       - run:
           name: bundle install
           command: |-
@@ -37,7 +39,7 @@ jobs:
     working_directory: /tmp/build_space/git_repo
     steps:
       - macos/switch-ruby:
-        version: "2.7.5"
+          version: "2.7.5"
       - attach_workspace:
           at: /tmp/build_space/
       - build-ios-app
