@@ -12,7 +12,7 @@ commands:
       - attach_workspace:
           at: /tmp/build_space/
       - macos/switch-ruby:
-          version: "3.0.6"
+          version: "12.12.12"
       - run:
           name: bundle install
           command: |-
