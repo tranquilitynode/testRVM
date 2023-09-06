@@ -19,7 +19,7 @@ commands:
 jobs:
   pre-build:
     docker:
-      - image: cimg/ruby:3.2.2-node
+      - image: cimg/ruby:2.7.5-node
     steps:
       - run: mkdir build_space
       - checkout:
