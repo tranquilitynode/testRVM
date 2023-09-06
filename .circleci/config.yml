@@ -2,22 +2,24 @@
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
 
-#orbs:
-#  #ruby: circleci/ruby@2.0.0
-#  macos: circleci/macos@2.3.6
+orbs:
+  #ruby: circleci/ruby@2.0.0
+  macos: circleci/macos@2.3.6
 
 commands:
   build-ios-app:
     steps:
       - attach_workspace:
           at: /tmp/build_space/
+      - macos/switch-ruby:
+          version: "3.0.6"
       - run:
           name: bundle install
           command: |-
             echo "code: ruby --version"
             ruby --version
 
-#jobs:
+jobs:
 #  pre-build:
 #    docker:
 #      - image: cimg/ruby:2.7.5-node
