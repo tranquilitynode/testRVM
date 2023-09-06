@@ -15,7 +15,7 @@ commands:
       #    version: "NotANumber"
       - run:
           name: Set Ruby Version
-          command: rbenv global 3.0.6 && rbenv rehash
+          command: rbenv global 2.7.5 && rbenv rehash
       - run:
           name: bundle install
           command: |-
