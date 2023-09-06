@@ -2,7 +2,7 @@
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
 
-rbs:
+orbs:
   ruby: circleci/ruby@2.0.0
 
 commands:
