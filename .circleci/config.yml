@@ -11,8 +11,9 @@ commands:
     steps:
       - attach_workspace:
           at: /tmp/build_space/
-      #- macos/switch-ruby:
-      #    version: "NotANumber"
+      - run:
+          name: Install a ruby verstion not already included in the executor image
+          command: rbenv install 2.7.5
       - run:
           name: Set Ruby Version
           command: rbenv global 2.7.5 && rbenv rehash
