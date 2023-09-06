@@ -12,7 +12,7 @@ commands:
       - attach_workspace:
           at: /tmp/build_space/
       - macos/switch-ruby:
-          version: "12.12.12"
+          version: "NotANumber"
       - run:
           name: bundle install
           command: |-
@@ -34,7 +34,7 @@ jobs:
 
   build-consumer-ios-app-prod:
     macos:
-      xcode: 14.3.1
+      xcode: 15.0.0
     resource_class: macos.x86.medium.gen2
     working_directory: /tmp/build_space/git_repo
     steps:
