@@ -4,7 +4,7 @@ version: 2.1
 
 orbs:
   #ruby: circleci/ruby@2.0.0
-  macos: circleci/macos@2.3.6
+  #macos: circleci/macos@2.3.6
 
 commands:
   build-ios-app:
@@ -37,7 +37,8 @@ commands:
     working_directory: /tmp/build_space/git_repo
     steps:
       - macos/switch-ruby:
-          version: "2.7.5"
+          version: "3.0.6"
+          #version: "2.7.5"
       - attach_workspace:
           at: /tmp/build_space/
       - build-ios-app
