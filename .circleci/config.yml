@@ -2,17 +2,20 @@
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
 
-orbs:
-  #ruby: circleci/ruby@2.0.0
-  macos: circleci/macos@2.3.6
+#orbs:
+#  #ruby: circleci/ruby@2.0.0
+#  macos: circleci/macos@2.3.6
 
 commands:
   build-ios-app:
     steps:
       - attach_workspace:
           at: /tmp/build_space/
-      - macos/switch-ruby:
-          version: "NotANumber"
+      #- macos/switch-ruby:
+      #    version: "NotANumber"
+      - run:
+          name: Set Ruby Version
+          command: rbenv global 3.0.6 && rbenv rehash
       - run:
           name: bundle install
           command: |-
