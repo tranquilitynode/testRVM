@@ -22,17 +22,17 @@ commands:
             ruby --version
 
 jobs:
-#  pre-build:
-#    docker:
-#      - image: cimg/ruby:2.7.5-node
-#    steps:
-#      - run: mkdir build_space
-#      - checkout:
-#          path: /tmp/build_space/git_repo
-#      - persist_to_workspace:
-#          root: /tmp/build_space
-#          paths:
-#            - git_repo
+  pre-build:
+    docker:
+      - image: circleci/node:14.1
+    steps:
+      - run: mkdir build_space
+      - checkout:
+          path: /tmp/build_space/git_repo
+      - persist_to_workspace:
+          root: /tmp/build_space
+          paths:
+            - git_repo
 
   build-consumer-ios-app-prod:
     macos:
@@ -47,5 +47,5 @@ jobs:
 workflows:
   build-things:
     jobs:
-      #- pre-build
+      - pre-build
       - build-consumer-ios-app-prod
